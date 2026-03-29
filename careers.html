@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Careers – Shelly Heritage Archaeology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --earth: #2C1F0E;
+  --clay: #8B5E3C;
+  --sand: #C9A96E;
+  --parchment: #F5EDD8;
+  --fog: #EDE6D6;
+  --white: #FDFAF4;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  background: var(--white);
+  color: var(--earth);
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.4rem 4rem;
+  background: rgba(253,250,244,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(139,94,60,0.15);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--earth); text-decoration: none;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; color: var(--clay); transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--earth); }
+
+/* PAGE HEADER */
+.page-header {
+  padding-top: 9rem; padding-bottom: 5rem;
+  background: var(--earth);
+  position: relative; overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(201,169,110,0.05) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(201,169,110,0.05) 40px);
+}
+.page-header .container { position: relative; z-index: 1; }
+.back-link {
+  display: inline-block;
+  font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(201,169,110,0.6); text-decoration: none; margin-bottom: 2rem;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--sand); }
+.page-eyebrow {
+  font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--sand); margin-bottom: 1rem;
+}
+.page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300; line-height: 1.1;
+  color: var(--parchment);
+}
+.page-title em { font-style: italic; color: var(--sand); }
+.page-subtitle {
+  margin-top: 1.5rem;
+  font-size: 0.88rem; line-height: 1.85;
+  color: rgba(245,237,216,0.92);
+  max-width: 560px;
+}
+
+/* SHARED */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+section { padding: 6rem 0; }
+.section-label {
+  font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--sand); margin-bottom: 1rem;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 300; color: var(--earth); line-height: 1.15;
+}
+.section-title em { font-style: italic; color: var(--clay); }
+.divider { width: 60px; height: 1px; background: var(--sand); margin: 2rem 0; }
+
+/* POSITION CARD */
+#opening { background: var(--fog); }
+.position-card {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 0;
+  border: 1px solid rgba(139,94,60,0.25);
+  margin-top: 3.5rem;
+  background: var(--white);
+}
+.position-info { padding: 3.5rem; border-right: 1px solid rgba(139,94,60,0.2); }
+.position-badge {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  background: var(--earth);
+  color: var(--sand);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.position-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 300;
+  color: var(--earth); margin-bottom: 0.5rem;
+}
+.position-meta {
+  display: flex; gap: 1.5rem; flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.meta-tag {
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--clay); padding: 0.25rem 0.7rem;
+  border: 1px solid rgba(139,94,60,0.3);
+}
+.position-desc {
+  font-size: 0.88rem; line-height: 1.85; color: #2C1F0E;
+}
+.position-desc p + p { margin-top: 1rem; }
+.position-list-title {
+  font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--earth); margin-top: 2rem; margin-bottom: 0.8rem;
+}
+.position-list {
+  list-style: none; padding: 0;
+}
+.position-list li {
+  font-size: 0.85rem; line-height: 1.75; color: #2C1F0E;
+  padding-left: 1.2rem; position: relative; margin-bottom: 0.3rem;
+}
+.position-list li::before {
+  content: '—';
+  position: absolute; left: 0;
+  color: var(--sand);
+}
+.position-apply { padding: 3.5rem; display: flex; flex-direction: column; justify-content: center; }
+.apply-header {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 300; font-style: italic;
+  color: var(--clay); margin-bottom: 2rem;
+}
+
+/* Forms */
+.form-group { margin-bottom: 1.4rem; }
+label {
+  display: block; font-size: 0.62rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--clay); margin-bottom: 0.5rem;
+}
+input, textarea, select {
+  width: 100%; padding: 0.85rem 1rem;
+  background: var(--fog);
+  border: 1px solid transparent;
+  border-bottom: 1px solid rgba(139,94,60,0.3);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.85rem; color: var(--earth);
+  outline: none; transition: border-color 0.2s, background 0.2s;
+  appearance: none;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--clay); background: #f0e8d8;
+}
+textarea { resize: vertical; min-height: 100px; }
+.btn-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2.5rem;
+  background: var(--clay);
+  color: var(--white);
+  border: 2px solid var(--clay);
+  cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+  transition: all 0.3s; margin-top: 0.5rem;
+}
+.btn-submit:hover { background: var(--earth); border-color: var(--earth); }
+.form-note { font-size: 0.72rem; color: var(--clay); margin-top: 0.8rem; opacity: 0.7; }
+
+/* WHY WORK WITH US */
+#culture { background: var(--white); }
+.culture-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 3rem; }
+.culture-card {
+  padding: 2.5rem 2rem; background: var(--fog);
+  transition: background 0.3s;
+}
+.culture-card:hover { background: var(--earth); }
+.culture-icon {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem; font-weight: 300;
+  color: var(--sand); margin-bottom: 1rem; line-height: 1;
+}
+.culture-title {
+  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--earth); margin-bottom: 0.7rem; transition: color 0.3s; font-weight: 400;
+}
+.culture-card:hover .culture-title { color: var(--sand); }
+.culture-desc {
+  font-size: 0.85rem; line-height: 1.75; color: #3a2a1a; transition: color 0.3s;
+}
+.culture-card:hover .culture-desc { color: rgba(245,237,216,0.7); }
+
+/* FOOTER */
+footer {
+  background: var(--earth); padding: 3rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem; font-weight: 600; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--sand); text-decoration: none;
+}
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a {
+  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(201,169,110,0.75); text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--sand); }
+.footer-copy { font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(201,169,110,0.6); }
+
+/* ANIMATIONS */
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 2rem; }
+  .container { padding: 0 2rem; }
+  .position-card { grid-template-columns: 1fr; }
+  .position-info { border-right: none; border-bottom: 1px solid rgba(139,94,60,0.2); }
+  .culture-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+}
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Shelly Heritage Archaeology</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#approach">Approach</a></li>
+    <li><a href="careers.html" class="active">Careers</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Home</a>
+    <p class="page-eyebrow">Join Our Team</p>
+    <h1 class="page-title">Work That<br><em>Matters</em></h1>
+    <p class="page-subtitle">We are a small, dedicated team that takes the preservation of cultural heritage seriously. We look for people who share that commitment — and bring professionalism, curiosity, and care to everything they do.</p>
+  </div>
+</div>
+
+<!-- WHY WORK WITH US -->
+
+<section id="culture">
+  <div class="container">
+    <p class="section-label fade-in">Why Shelly Heritage</p>
+    <h2 class="section-title fade-in">A Culture of <em>Precision</em><br>and Purpose</h2>
+    <div class="divider fade-in"></div>
+    <div class="culture-grid">
+      <div class="culture-card fade-in">
+        <div class="culture-icon">✦</div>
+        <div class="culture-title">Remote-First</div>
+        <p class="culture-desc">We operate nationwide and embrace flexible, remote work arrangements. Collaborate from anywhere while serving projects across the country.</p>
+      </div>
+      <div class="culture-card fade-in">
+        <div class="culture-icon">◈</div>
+        <div class="culture-title">Meaningful Work</div>
+        <p class="culture-desc">Every project contributes directly to preserving the cultural and historical record of the United States. Your work has lasting impact.</p>
+      </div>
+      <div class="culture-card fade-in">
+        <div class="culture-icon">◇</div>
+        <div class="culture-title">Professional Growth</div>
+        <p class="culture-desc">Work alongside experienced archaeologists and CRM professionals. Gain exposure to diverse project types — from federal undertakings to private development.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN POSITION -->
+
+<section id="opening">
+  <div class="container">
+    <p class="section-label fade-in">Open Position</p>
+    <h2 class="section-title fade-in">Current <em>Opportunity</em></h2>
+    <div class="divider fade-in"></div>
+
+<div class="position-card fade-in">
+  <div class="position-info">
+    <div class="position-badge">Now Hiring</div>
+    <h3 class="position-title">Virtual Assistant</h3>
+    <div class="position-meta">
+      <span class="meta-tag">Remote</span>
+      <span class="meta-tag">Part-Time / Full-Time</span>
+      <span class="meta-tag">United States</span>
+    </div>
+    <div class="position-desc">
+      <p>We are looking for a highly organized and proactive Virtual Assistant to support the day-to-day operations of Shelly Heritage Archaeology. This is a remote position with flexible hours, ideal for someone who is detail-oriented, communicative, and eager to support meaningful cultural resource work.</p>
+      <p>You will work closely with our principal archaeologist, helping to manage communications, coordinate scheduling, support report preparation, and keep projects moving efficiently.</p>
+    </div>
+
+    <p class="position-list-title">Responsibilities</p>
+    <ul class="position-list">
+      <li>Manage and organize email correspondence and respond to routine inquiries</li>
+      <li>Coordinate scheduling, meetings, and project timelines</li>
+      <li>Assist with formatting and proofreading technical reports and documents</li>
+      <li>Maintain organized digital filing systems for project records</li>
+      <li>Conduct background research and compile reference materials as needed</li>
+      <li>Support invoicing, client communications, and general administrative tasks</li>
+      <li>Assist with website updates, social media, or outreach as needed</li>
+    </ul>
+
+    <p class="position-list-title">Qualifications</p>
+    <ul class="position-list">
+      <li>Proven experience as a virtual or administrative assistant</li>
+      <li>Excellent written and verbal communication skills</li>
+      <li>Strong organizational skills and attention to detail</li>
+      <li>Proficiency with Google Workspace, Microsoft Office, or equivalent tools</li>
+      <li>Self-motivated and comfortable working independently and remotely</li>
+      <li>Interest in archaeology, cultural heritage, or the natural sciences is a plus</li>
+    </ul>
+  </div>
+
+  <div class="position-apply">
+    <p class="apply-header">Apply for this position</p>
+    <!-- Replace YOUR_CAREERS_FORM_ID with your Formspree careers form ID -->
+    <form action="https://formspree.io/f/maqlejjj" method="POST">
+      <input type="hidden" name="_subject" value="Virtual Assistant Application – Shelly Heritage Archaeology">
+      <input type="hidden" name="position" value="Virtual Assistant">
+      <div class="form-group">
+        <label for="c-name">Full Name</label>
+        <input type="text" id="c-name" name="name" required placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label for="c-email">Email Address</label>
+        <input type="email" id="c-email" name="email" required placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label for="c-phone">Phone (optional)</label>
+        <input type="tel" id="c-phone" name="phone" placeholder="(555) 000-0000">
+      </div>
+      <div class="form-group">
+        <label for="c-avail">Availability</label>
+        <select id="c-avail" name="availability">
+          <option value="">Select…</option>
+          <option>Part-time (under 20 hrs/week)</option>
+          <option>Part-time (20–30 hrs/week)</option>
+          <option>Full-time (30+ hrs/week)</option>
+          <option>Flexible / Open to discuss</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="c-cover">Why are you a great fit?</label>
+        <textarea id="c-cover" name="cover_letter" required placeholder="Tell us about your experience and why you're interested in this role…"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="c-portfolio">LinkedIn / Portfolio URL (optional)</label>
+        <input type="url" id="c-portfolio" name="portfolio" placeholder="https://linkedin.com/in/…">
+      </div>
+      <button type="submit" class="btn-submit">Submit Application →</button>
+      <p class="form-note">We review all applications and respond within 5 business days.</p>
+    </form>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-logo">Shelly Heritage Archaeology</a>
+  <div class="footer-links">
+    <a href="index.html#about">About</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#approach">Approach</a>
+    <a href="careers.html">Careers</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <p class="footer-copy">© 2025 Shelly Heritage Archaeology. All rights reserved.</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

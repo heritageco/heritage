@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shelly Heritage Archaeology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --earth: #2C1F0E;
+  --clay: #8B5E3C;
+  --sand: #C9A96E;
+  --parchment: #F5EDD8;
+  --fog: #EDE6D6;
+  --white: #FDFAF4;
+  --accent: #6B3F1F;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  background: var(--white);
+  color: var(--earth);
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.4rem 4rem;
+  background: rgba(253,250,244,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(139,94,60,0.15);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--earth);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--clay);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--earth); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+.hero-left {
+  background: var(--earth);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 5rem 6rem 5rem;
+  position: relative;
+}
+.hero-left::after {
+  content: '';
+  position: absolute; right: -60px; top: 0; bottom: 0; width: 120px;
+  background: var(--earth);
+  clip-path: polygon(0 0, 100% 15%, 100% 85%, 0 100%);
+  z-index: 2;
+}
+.hero-eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 2rem;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--parchment);
+  margin-bottom: 0.5rem;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--sand);
+}
+.hero-sub {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(201,169,110,0.9);
+  margin-top: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2.4rem;
+  background: var(--sand);
+  color: var(--earth);
+  text-decoration: none;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  width: fit-content;
+  border: 2px solid var(--sand);
+}
+.hero-cta:hover {
+  background: transparent;
+  color: var(--sand);
+  border-color: var(--sand);
+}
+.hero-right {
+  background: var(--fog);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 6rem 4rem 5rem 7rem;
+  position: relative;
+}
+.hero-right::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(139,94,60,0.07) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(139,94,60,0.07) 40px);
+}
+.hero-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;
+  position: relative; z-index: 1;
+}
+.stat-item {}
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--clay);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #5a3e28;
+  margin-top: 0.4rem;
+}
+.hero-tagline {
+  position: absolute; top: 50%; left: 7rem;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--clay);
+  max-width: 280px;
+  line-height: 1.6;
+  z-index: 1;
+}
+
+/* ── SECTION SHARED ── */
+section { padding: 7rem 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+.section-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  color: var(--earth);
+  line-height: 1.15;
+}
+.section-title em { font-style: italic; color: var(--clay); }
+.divider {
+  width: 60px; height: 1px;
+  background: var(--sand);
+  margin: 2rem 0;
+}
+
+/* ── ABOUT ── */
+#about { background: var(--white); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 6rem;
+  align-items: start;
+}
+.about-body {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: #2C1F0E;
+}
+.about-body p + p { margin-top: 1.2rem; }
+.about-accent {
+  background: var(--earth);
+  padding: 3rem;
+  color: var(--parchment);
+}
+.about-accent-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--sand);
+}
+.about-accent-attr {
+  margin-top: 1.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(201,169,110,0.85);
+}
+
+/* ── SERVICES ── */
+#services { background: var(--fog); }
+.services-intro {
+  display: grid; grid-template-columns: 1fr 2fr; gap: 4rem;
+  margin-bottom: 5rem;
+}
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  border: 1px solid rgba(139,94,60,0.2);
+}
+.service-card {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid rgba(139,94,60,0.2);
+  border-bottom: 1px solid rgba(139,94,60,0.2);
+  transition: background 0.3s;
+  position: relative;
+}
+.service-card:nth-child(3n) { border-right: none; }
+.service-card:nth-last-child(-n+3) { border-bottom: none; }
+.service-card:hover { background: var(--earth); }
+.service-card:hover .service-num,
+.service-card:hover .service-name,
+.service-card:hover .service-desc { color: var(--parchment); }
+.service-card:hover .service-num { color: var(--sand); }
+.service-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: rgba(139,94,60,0.3);
+  margin-bottom: 1.2rem;
+  transition: color 0.3s;
+}
+.service-name {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--earth);
+  margin-bottom: 0.8rem;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+.service-desc {
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: #2C1F0E;
+  transition: color 0.3s;
+}
+
+/* ── APPROACH ── */
+#approach { background: var(--earth); }
+#approach .section-title { color: var(--parchment); }
+#approach .section-label { color: rgba(201,169,110,0.7); }
+#approach .divider { background: rgba(201,169,110,0.4); }
+.approach-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  margin-top: 4rem;
+}
+.step {
+  padding: 3rem 2rem;
+  border-right: 1px solid rgba(201,169,110,0.2);
+  position: relative;
+}
+.step:last-child { border-right: none; }
+.step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem;
+  font-weight: 300;
+  color: rgba(201,169,110,0.2);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.step-title {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 1rem;
+}
+.step-desc {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: rgba(245,237,216,0.88);
+}
+
+/* ── CONTACT ── */
+#contact { background: var(--white); }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem;
+  align-items: start;
+}
+.contact-info {}
+.contact-item {
+  margin-bottom: 2rem;
+}
+.contact-item-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 0.4rem;
+}
+.contact-item-val {
+  font-size: 0.9rem;
+  color: var(--earth);
+}
+.contact-item-val a { color: var(--clay); text-decoration: none; }
+.contact-item-val a:hover { text-decoration: underline; }
+
+/* Forms */
+.form-group { margin-bottom: 1.5rem; }
+label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin-bottom: 0.5rem;
+}
+input, textarea, select {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: var(--fog);
+  border: 1px solid transparent;
+  border-bottom: 1px solid rgba(139,94,60,0.3);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.85rem;
+  color: var(--earth);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  appearance: none;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--clay);
+  background: #f0e8d8;
+}
+textarea { resize: vertical; min-height: 130px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.btn-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2.8rem;
+  background: var(--clay);
+  color: var(--white);
+  border: 2px solid var(--clay);
+  cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+.btn-submit:hover { background: var(--earth); border-color: var(--earth); }
+.form-note {
+  font-size: 0.72rem;
+  color: var(--clay);
+  margin-top: 0.8rem;
+  opacity: 0.7;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--earth);
+  padding: 3rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sand);
+  text-decoration: none;
+}
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(201,169,110,0.75);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--sand); }
+.footer-copy {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: rgba(201,169,110,0.6);
+}
+
+/* ── ANIMATIONS ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 2rem; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 8rem 2.5rem 4rem; }
+  .hero-left::after { display: none; }
+  .hero-right { padding: 4rem 2.5rem; }
+  .hero-tagline { position: static; transform: none; margin-bottom: 3rem; max-width: 100%; }
+  .about-grid, .contact-grid, .services-intro { grid-template-columns: 1fr; gap: 2.5rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card { border-right: none; border-bottom: 1px solid rgba(139,94,60,0.2); }
+  .service-card:last-child { border-bottom: none; }
+  .approach-steps { grid-template-columns: 1fr 1fr; }
+  .step { border-bottom: 1px solid rgba(201,169,110,0.2); }
+  .form-row { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+  .container { padding: 0 2rem; }
+}
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <a href="index.html" class="nav-logo">Shelly Heritage Archaeology</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Independent Archaeology Consulting · United States</p>
+    <h1 class="hero-title">
+      Preserving<br>What History<br><em>Left Behind</em>
+    </h1>
+    <p class="hero-sub">Federal · State · Private Sector · CRM</p>
+    <a href="#contact" class="hero-cta">Start a Conversation</a>
+  </div>
+  <div class="hero-right">
+    <p class="hero-tagline">"Every site tells a story. Our work ensures those stories are not lost."</p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">States Worked Across</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Sec. 106 Compliance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <p class="section-label fade-in">Who We Are</p>
+        <h2 class="section-title fade-in">An <em>independent</em><br>consulting firm<br>built on precision</h2>
+        <div class="divider fade-in"></div>
+        <div class="about-accent fade-in">
+          <p class="about-accent-quote">"We bring together deep fieldwork expertise and meticulous research methodology to deliver results that stand up to both scholarly and regulatory scrutiny."</p>
+          <p class="about-accent-attr">— Shelly Heritage Archaeology</p>
+        </div>
+      </div>
+      <div class="about-body fade-in">
+        <p>Shelly Heritage Archaeology is an independent consulting organization dedicated to the study, documentation, and preservation of the archaeological record across the United States.</p>
+        <p>We serve a broad spectrum of clients — from federal agencies and state preservation offices to private developers, landowners, and nonprofits — guiding each project from initial reconnaissance through final reporting with clarity and precision.</p>
+        <p>Our team brings rigorous field methods to every engagement, combining archival depth with on-the-ground expertise. We understand both the scholarly stakes and the regulatory landscape that governs cultural resource work in the United States.</p>
+        <p>Whether your project is a federal undertaking subject to Section 106 or a private development seeking due diligence, we provide the expertise to move forward confidently.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+
+<section id="services">
+  <div class="container">
+    <div class="services-intro">
+      <div>
+        <p class="section-label fade-in">What We Offer</p>
+        <h2 class="section-title fade-in">Core<br><em>Services</em></h2>
+        <div class="divider fade-in"></div>
+      </div>
+      <p class="about-body fade-in" style="font-size:0.95rem;line-height:1.9;color:#5a4a3a;align-self:end;">
+        From desk-based historical research through full Phase III data recovery, we offer end-to-end archaeological consulting that meets the highest professional and regulatory standards. Hover any service to learn more.
+      </p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-num">01</div>
+        <div class="service-name">Historical Site Research</div>
+        <p class="service-desc">Comprehensive desk-based assessments integrating USGS data, historical maps, archival records, and prior survey reports to identify archaeological potential before fieldwork begins.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-num">02</div>
+        <div class="service-name">Phase I–III Excavation</div>
+        <p class="service-desc">Full-service field investigations from Phase I identification surveys through Phase II evaluation and Phase III data recovery, executed with precision and thorough documentation.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-num">03</div>
+        <div class="service-name">Cultural Resource Management</div>
+        <p class="service-desc">End-to-end CRM support for federal undertakings, private development, and infrastructure projects — ensuring compliance and protecting significant cultural resources.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-num">04</div>
+        <div class="service-name">Artifact Preservation</div>
+        <p class="service-desc">On-site stabilization, laboratory processing, and conservation assessment of recovered materials. We follow federal curation guidelines and coordinate with approved repositories.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-num">05</div>
+        <div class="service-name">Report Writing & Documentation</div>
+        <p class="service-desc">Detailed technical reports meeting state and federal standards — from site forms and Phase I survey reports to National Register nominations and MOAs.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-num">06</div>
+        <div class="service-name">Public & Private Sector Collaboration</div>
+        <p class="service-desc">Experienced liaison work between developers, agencies, Tribal Historic Preservation Offices, and SHPOs — facilitating communication and finding workable paths forward.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+
+<section id="approach">
+  <div class="container">
+    <p class="section-label fade-in">Our Process</p>
+    <h2 class="section-title fade-in">From Research<br>to <em>Report</em></h2>
+    <div class="divider fade-in"></div>
+    <div class="approach-steps">
+      <div class="step fade-in">
+        <div class="step-num">01</div>
+        <div class="step-title">Scoping & Research</div>
+        <p class="step-desc">Archival records, site file reviews, map analysis, and regulatory context define scope and strategy before entering the field.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">02</div>
+        <div class="step-title">Field Investigation</div>
+        <p class="step-desc">Systematic survey and excavation with rigorous documentation: photo logs, stratigraphic profiles, and GPS-registered find locations.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">03</div>
+        <div class="step-title">Analysis & Consultation</div>
+        <p class="step-desc">Laboratory processing, specialist analysis, and consultation with SHPOs, THPOs, and federal agencies at each stage.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">04</div>
+        <div class="step-title">Reporting & Delivery</div>
+        <p class="step-desc">Final technical reports prepared to the highest professional standards — clear, compliant, and delivered on schedule.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <p class="section-label fade-in">Get in Touch</p>
+        <h2 class="section-title fade-in">Let's Talk About<br>Your <em>Project</em></h2>
+        <div class="divider fade-in"></div>
+        <div class="fade-in">
+          <div class="contact-item">
+            <div class="contact-item-label">Location</div>
+            <div class="contact-item-val">United States (Nationwide)</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val"><a href="mailto:officiallheritageco@gmail.com">officiallheritageco@gmail.com</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-label">Response Time</div>
+            <div class="contact-item-val">Within 2 business days</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-label">Services</div>
+            <div class="contact-item-val">Public &amp; Private Sector</div>
+          </div>
+          <div class="contact-item" style="margin-top:2.5rem;">
+            <a href="careers.html" class="hero-cta" style="background:var(--clay);color:var(--white);border-color:var(--clay);font-size:0.68rem;">View Open Positions →</a>
+          </div>
+        </div>
+      </div>
+
+  <div class="fade-in">
+    <!-- Replace YOUR_FORM_ID with your Formspree form ID -->
+    <form action="https://formspree.io/f/xdapezdg" method="POST">
+      <input type="hidden" name="_subject" value="New Project Inquiry – Shelly Heritage Archaeology">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required placeholder="Jane Smith">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="jane@example.com">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="org">Organization</label>
+          <input type="text" id="org" name="organization" placeholder="Agency / Company">
+        </div>
+        <div class="form-group">
+          <label for="service">Service Needed</label>
+          <select id="service" name="service">
+            <option value="">Select a service…</option>
+            <option>Historical Site Research</option>
+            <option>Phase I–III Excavation</option>
+            <option>Cultural Resource Management</option>
+            <option>Artifact Preservation</option>
+            <option>Report Writing & Documentation</option>
+            <option>Public & Private Sector Collaboration</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="message">Project Details</label>
+        <textarea id="message" name="message" required placeholder="Tell us about your project, location, timeline, and any regulatory requirements…"></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send Inquiry →</button>
+      <p class="form-note">We respond within 2 business days.</p>
+    </form>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <a href="index.html" class="footer-logo">Shelly Heritage Archaeology</a>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#approach">Approach</a>
+    <a href="careers.html">Careers</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p class="footer-copy">© 2025 Shelly Heritage Archaeology. All rights reserved.</p>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
